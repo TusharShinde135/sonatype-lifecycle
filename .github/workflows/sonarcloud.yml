@@ -20,8 +20,7 @@ jobs:
     - name: Set up JDK 17 (Zulu)
       uses: actions/setup-java@v3
       with:
-        java-version: '17'  # Change from JDK 11 to JDK 17
-        distribution: 'zulu'
+        java-version: '17'  # JDK 17
 
     - name: Cache Maven dependencies
       uses: actions/cache@v3
@@ -34,16 +33,13 @@ jobs:
     - name: Install dependencies
       run: mvn install -B
 
-    - name: Run SonarCloud Analysis with Maven
-      run: |
-        mvn clean verify sonar:sonar \
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-          -Dsonar.organization=${{ secrets.SONAR_ORG }} \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          -Dsonar.pullrequest.branch=${{ github.head_ref }} \
-          -Dsonar.pullrequest.base=${{ github.base_ref }} \
-          -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@v2
+      with:
+        organization: ${{ secrets.SONAR_ORG }}
+        projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     - name: Upload Quality Gate status
       uses: sonarsource/sonarcloud-github-action@v2
