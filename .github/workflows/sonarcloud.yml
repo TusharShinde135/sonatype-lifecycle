@@ -21,7 +21,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
-        distribution: 'zulu'  # Use Zulu distribution
+        distribution: 'zulu'
 
     - name: Cache SonarCloud dependencies
       uses: actions/cache@v3
@@ -36,10 +36,10 @@ jobs:
 
     - name: Run SonarCloud analysis
       uses: sonarsource/sonarcloud-github-action@v2
-      with:
-        sonar-token: ${{ secrets.SONAR_TOKEN }}
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Set SONAR_TOKEN as an environment variable
 
     - name: Upload Quality Gate status
       uses: sonarsource/sonarcloud-github-action@v2
-      with:
-        sonar-token: ${{ secrets.SONAR_TOKEN }}
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Set SONAR_TOKEN as an environment variable
