@@ -38,12 +38,12 @@ jobs:
       uses: sonarsource/sonarcloud-github-action@v2
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Make sure the token is set
-        SONAR_PROJECT_KEY: TusharShinde135_sonatype-lifecycle  # Set your project key
-        SONAR_ORG: TusharShinde135  # Set your organization key
+        SONAR_PROJECT_KEY: "TusharShinde135_sonatype-lifecycle"  # Set your project key
+        SONAR_ORG: "TusharShinde135"  # Set your organization key
 
     - name: Upload Quality Gate status
       uses: sonarsource/sonarcloud-github-action@v2
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Make sure the token is set
-        SONAR_PROJECT_KEY: TusharShinde135_sonatype-lifecycle  # Set your project key
-        SONAR_ORG: TusharShinde135  # Set your organization key
+        SONAR_PROJECT_KEY: "TusharShinde135_sonatype-lifecycle"  # Set your project key
+        SONAR_ORG: "TusharShinde135"  # Set your organization key
