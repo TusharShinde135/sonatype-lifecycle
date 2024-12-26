@@ -21,6 +21,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
+        distribution: 'adoptopenjdk'  # Use adoptopenjdk (or 'openjdk' as alternative)
 
     - name: Cache SonarCloud dependencies
       uses: actions/cache@v3
