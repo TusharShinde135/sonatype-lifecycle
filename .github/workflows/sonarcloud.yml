@@ -17,11 +17,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up JDK 11
+    - name: Set up JDK 11 (Zulu)
       uses: actions/setup-java@v3
       with:
         java-version: '11'
-        distribution: 'openjdk'  # Use openjdk instead of adoptium
+        distribution: 'zulu'  # Use Zulu distribution
 
     - name: Cache SonarCloud dependencies
       uses: actions/cache@v3
