@@ -20,7 +20,8 @@ jobs:
     - name: Set up JDK 17 (Zulu)
       uses: actions/setup-java@v3
       with:
-        java-version: '17'  # JDK 17
+        java-version: '17'  # Specify the Java version
+        distribution: 'zulu'  # Specify the distribution (Zulu in this case)
 
     - name: Cache Maven dependencies
       uses: actions/cache@v3
