@@ -1,3 +1,13 @@
+name: SonarCloud Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   sonarcloud:
     name: SonarCloud Scan
@@ -13,11 +23,20 @@ jobs:
         java-version: '11'
         distribution: 'zulu'
 
+    - name: Cache SonarCloud dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.sonar/cache
+        key: ${{ runner.os }}-sonar-${{ hashFiles('**/*.xml', '**/*.java') }}
+        restore-keys: |
+          ${{ runner.os }}-sonar-
+
     - name: Install dependencies
       run: mvn install
 
-    # Remove this block to disable manual SonarCloud analysis
-    - name: Run SonarCloud analysis
+    
+
+    - name: Upload Quality Gate status
       uses: sonarsource/sonarcloud-github-action@v2
       with:
         args: |
