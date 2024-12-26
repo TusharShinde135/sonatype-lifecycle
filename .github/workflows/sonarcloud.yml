@@ -36,22 +36,16 @@ jobs:
 
     - name: Run SonarCloud analysis
       uses: sonarsource/sonarcloud-github-action@v2
-      with:
-        # You can also specify properties here as needed
-        projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
-        organization: ${{ secrets.SONAR_ORG }}
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Make sure the token is set
         SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}  # Set your project key
         SONAR_ORG: ${{ secrets.SONAR_ORG }}  # Set your organization key
+        SONAR_HOST_URL: https://sonarcloud.io
 
     - name: Upload Quality Gate status
       uses: sonarsource/sonarcloud-github-action@v2
-      with:
-        # Same for the upload step
-        projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
-        organization: ${{ secrets.SONAR_ORG }}
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
         SONAR_ORG: ${{ secrets.SONAR_ORG }}
+        SONAR_HOST_URL: https://sonarcloud.io
