@@ -10,7 +10,7 @@ on:
 
 jobs:
   sonarcloud:
-    name: SonarCloud Scan
+    name: SonarCloud Scan (Auto)
     runs-on: ubuntu-latest
 
     steps:
@@ -33,18 +33,6 @@ jobs:
 
     - name: Install dependencies
       run: mvn install -B
-
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@v2
-      with:
-        args: |
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.organization=${{ secrets.SONAR_ORG }}
-          -Dsonar.host.url=https://sonarcloud.io
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-        SONAR_ORG: ${{ secrets.SONAR_ORG }}
 
     - name: Upload Quality Gate status
       uses: sonarsource/sonarcloud-github-action@v2
