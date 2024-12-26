@@ -1,13 +1,3 @@
-name: SonarCloud Analysis
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
 jobs:
   sonarcloud:
     name: SonarCloud Scan
@@ -22,14 +12,6 @@ jobs:
       with:
         java-version: '11'
         distribution: 'zulu'
-
-    - name: Cache SonarCloud dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.sonar/cache
-        key: ${{ runner.os }}-sonar-${{ hashFiles('**/*.xml', '**/*.java') }}
-        restore-keys: |
-          ${{ runner.os }}-sonar-
 
     - name: Install dependencies
       run: mvn install
